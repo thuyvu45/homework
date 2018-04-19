@@ -34,7 +34,7 @@ done
 
 # Install and deploy airflow  app
 echo "Install and deploy app ..." >> LOGFILE 
-sudo pip install "apache-airflow[postgres]"
+sudo pip install "apache-airflow[postgres,redis]"
 
 # Run Healthcheck
 echo "Healthcheck ..." >> LOGFILE 
