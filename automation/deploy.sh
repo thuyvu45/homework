@@ -13,8 +13,9 @@ DEPLOY_DIR="/tmp/deploy${TODAY_DATE}$$"
 #create deploy directory
 ssh -i $PATH_TO_KEY_FILE $EC2_USER@$EC2_HOST "mkdir ${DEPLOY_DIR}" 
 
-# copy the setup.sh script over
+# copy the setup.sh and cleanup.sh scripts over
 scp -i $PATH_TO_KEY_FILE setup.sh $EC2_USER@$EC2_HOST:$DEPLOY_DIR/.
+scp -i $PATH_TO_KEY_FILE cleanup.sh $EC2_USER@$EC2_HOST:$DEPLOY_DIR/.
 
 # excute setup.sh script
 ssh -i $PATH_TO_KEY_FILE $EC2_USER@$EC2_HOST "cd ${DEPLOY_DIR};./setup.sh"
