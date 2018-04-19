@@ -1,4 +1,5 @@
 #!/bin/bash
+export AIRFLOW_HOME=~/airflow
 
 # Function to check and install package
 check_isntall_package() {
@@ -35,6 +36,9 @@ done
 # Install and deploy airflow  app
 echo "Install and deploy app ..." >> LOGFILE 
 sudo pip install "apache-airflow[postgres,redis]"
+sudo pip install markupsafe==0.23
+airflow initdb
+nohup airflow webserver -p 8080 2>&1 & 
 
 # Run Healthcheck
 echo "Healthcheck ..." >> LOGFILE 
@@ -42,4 +46,4 @@ echo "Healthcheck ..." >> LOGFILE
 # Run verification tests 
 echo "Verification tests ..." >> LOGFILE 
 
-echo "Done ..." > LOGFILE 
+echo "Done ..." >> LOGFILE 
